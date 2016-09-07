@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Fizz Buzz</title>
+    <!--
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+    -->
+</head>
+<body>
+    <div class = "main">
+        <p> Fizz Buzz </p>
+        <form action="javascript:;" onsubmit = "js_main(this.inputBox.value)">
+            <input type = "number" name = "inputBox" 
+                placeholder = "Enter value to be calculated" style="width: 500px">
+            <br><br>
+            <input type = "submit" value = "Run">
+        </form> 
+    </div>
+
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+    <!-- <script src="./src/fizz-buzz.js"></script> -->
+    <script>
+        function js_main( num_loop ){
+            let num_loop_sanitized = (function to_int(input_to_check) {
+                return parseInt(input_to_check);
+            }(num_loop));
+            (function print_fizz_buzz(num_loop) {
+                $(".main").append("Fizz Buzz modified list: <br>");
+                for (let i=1; i<=num_loop; i++) {
+                    let fizz_buzz_val = fizz_buzz(i);
+                    $(".main").append(fizz_buzz_val + "<br>");
+                }
+            }(num_loop_sanitized));
+        };
+        
+        // ----Fizz buzz----
+        // If x is divisable by 3 return 'fizz'
+        // If x is divisable by 5 return 'buzz'
+        // If x is divisable by 3 & 5 return 'fizz buzz'
+        var  fizz_buzz = function(x) {
+           if (( (x % 3) == 0 ) && ( (x % 5) == 0 )) {
+             return "fizzbuzz";
+           }
+           else if ( (x % 3) == 0 ) {
+               return "fizz";
+           }
+           else if ( (x % 5) == 0 ) {
+               return "buzz";
+           }
+           else {
+               return x;
+           }
+        };        
+
+            // https://github.com/getify/You-Dont-Know-JS/blob/master/scope%20%26%20closures/ch3.md
+            // var a = 2;
+            // (function IIFE( def ){
+            //        def( window );
+            //   })(function def( global ){
+            //        var a = 3;
+            //        console.log( a ); // 3
+            //        console.log( global.a ); // 2
+            //});
+
+            /* I HAVE NO IDEA WHY THIS DOES NOT WORK
+            var num_loop_sanitized = (function input_to_int( def ){
+                def( num_loop );
+            })(function def( input_to_check ){
+                return parseInt( input_to_check );
+            });
+            */         
+
+/*
+        function* iter( max_val ) {
+            var iter_val = 1;
+            while ( iter_val <= max_val ) {
+                yield fizz_buzz( iter_val );
+            }
+        };
+      };
+*/      
+    </script>
+</body>
+</html>
